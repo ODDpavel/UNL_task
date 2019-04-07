@@ -1,0 +1,47 @@
+<div class="show-task">
+  <% @project.tasks.each do |task| %>
+        <div class="task-view" data-task_id="<%= task.id %>">
+          <div class="">
+            Title:
+            <%= task.title %>
+            <%= task.status %>
+          </div>
+
+          <div class="" >
+            Task № <%= task.id %>:
+            <%= task.description %>
+           </div>
+
+          <div class="task-edit">
+            <%= link_to 'Edit', '/edit-task', class: 'edit_task', remote: true %>
+            |
+            <%= link_to 'Delete Task', [task.project, task],
+                 method: :delete, data: { confirm: 'Are you sure?' } %>
+          </div>
+        </div>
+  <% end %>
+
+</div>
+
+
+
+<div class="add-task">
+  <h2>Add a task:</h2>
+  <%= form_with(model: [ @project, @project.tasks.build ], local: true) do |form| %>
+    <p>
+      <%= form.label :title %><br>
+      <%= form.text_field :title %>
+    </p>
+    <p>
+      <%= form.label :description %><br>
+      <%= form.text_area :description %>
+    </p>
+    <p>
+      <%= form.submit %>
+    </p>
+  <% end %>
+
+  <%= link_to 'Edit', edit_project_path(@project) %> |
+  <%= link_to 'Back', project_path %>
+
+</div>

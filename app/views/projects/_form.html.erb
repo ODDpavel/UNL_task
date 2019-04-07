@@ -1,0 +1,16 @@
+<%= form_for @project, html: {multipart: true} do |f| %>
+    <div class="form-group">
+      <%= f.label :name %>
+      <%= f.text_field :name, class: 'form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.label :summary %>
+      <%= f.text_area :summary, class: 'editor-summary form-control' %>
+    </div>
+
+    <div class="form-group">
+      <%= f.submit action: @project.new_record? ? 'Create' : 'Change', class: 'btn btn-info' %>
+      <%= link_to 'Back', :back, class: 'btn btn-outline-secondary' %>
+    </div>
+<% end %>

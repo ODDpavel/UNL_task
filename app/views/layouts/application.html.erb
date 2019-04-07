@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>UnlTask</title>
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+
+  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+</head>
+
+<body>
+
+  <div class="header-top">
+    <div class="container top">
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <a class="navbar-brand" href="<%= projects_path %>"> </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+          <ul class="navbar-nav mr-auto">
+            <li class="nav-item ">
+              <a class="nav-link" href="<%= projects_path %>">All Projects
+                </a>
+              </li>
+              <li class="nav-item ">
+                <a class="nav-link" href="<%= new_project_path %>">New Project</a>
+            </li>
+          </ul>
+
+          <ul class="navbar-nav pull-xs-right">
+            <% if user_signed_in?  %>
+              <li class="nav-item ">
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "nav-link" %>
+              </li>
+            <% else %>
+              <li class="nav-item ">
+                <%= link_to "Log in", new_user_session_path, class: "nav-link" %>
+              </li>
+              <% end %>
+              <li class="nav-item ">
+                <%= link_to "Sign up", new_user_registration_path, class: "nav-link" %>
+              </li>
+          </ul>
+
+
+
+          </div>
+        </nav>
+      </div>
+    </div>
+
+    <div class="container main">
+      <div class="row">
+        <div class="col-md-12">
+          <% flash.each do |name, message| %>
+          <div class="alert <%= bootstrap_class_for(name) %>">
+            <button class="close" data-dismiss="alert">&times;</button>
+            <%= message %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-md-8">
+          <%= yield %>
+        </div>
+      </div>
+
+    </div>
+  </body>
+  </html>

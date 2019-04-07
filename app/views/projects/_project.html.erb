@@ -1,0 +1,16 @@
+<div class="project">
+  <div class="project-head">
+    <h2><%= link_to project.name, project_path(project)  %></h2>
+
+    <%= link_to 'Edit', edit_project_path(project) %>
+    |
+    <%= link_to 'Delete', project_path(project), method: :delete, data: { confirm: 'Are you sure?'} %>
+    <% if project.start_date? %>
+    <p>Created at: <%= project.start_date.strftime('%d/%m/%Y') %></p>
+    <% end %>
+  </div>
+  <div class="project-summary">
+    <%= project.summary %>
+  </div>
+
+</div>
