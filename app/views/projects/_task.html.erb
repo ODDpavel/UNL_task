@@ -32,6 +32,16 @@
       <%= form.label :title %><br>
       <%= form.text_field :title %>
     </p>
+    <% @mail = User.all.map do |i|  %>
+    <% i.email  %>
+    <% end %>
+
+    <% @all_projects = Project.all.map do |i|  %>
+    <% i.name %>
+    <% end %>
+
+    <p>  <%= form.select :email, @mail %> </p>
+    <p><%= form.select :projects, @all_projects %></p>
     <p>
       <%= form.label :description %><br>
       <%= form.text_area :description %>
